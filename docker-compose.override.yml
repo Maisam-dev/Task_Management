@@ -1,0 +1,16 @@
+services:
+  task_management_api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=Task_ManagementDb;User Id=sa;Password=YOUR_STRONG_PASSWORD_HERE!;TrustServerCertificate=True;
+      - JWT__Key=YOUR_SECRET_KEY_HERE_THAT_IS_AT_LEAST_32_CHARACTERS_LONG
+    ports:
+      - "8080"
+      - "8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

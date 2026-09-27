@@ -1,0 +1,11 @@
+﻿{
+  "compilerOptions": {
+    "target": "ES6"
+  },
+  "include": [
+    "wwwroot/js/**/*",
+    "wwwroot/frontend/api/customerService.js",
+    "wwwroot/frontend/api/api.js",
+    "wwwroot/frontend/ui/customerTable.js"
+  ]
+}

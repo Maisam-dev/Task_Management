@@ -1,0 +1,121 @@
+# =========================
+
+# Build results
+
+# =========================
+
+bin/
+obj/
+out/
+
+# =========================
+
+# Visual Studio
+
+# =========================
+
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# =========================
+
+# Rider / VS Code
+
+# =========================
+
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# =========================
+
+# Logs
+
+# =========================
+
+*.log
+
+# =========================
+
+# OS Files
+
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+
+# ASP.NET Core
+
+# =========================
+
+appsettings.Development.json
+appsettings.Local.json
+
+# User secrets
+
+secrets.json
+
+# =========================
+
+# NuGet
+
+# =========================
+
+*.nupkg
+packages/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# =========================
+
+# Publish output
+
+# =========================
+
+publish/
+wwwroot/dist/
+wwwroot/build/
+
+# =========================
+
+# Node (if frontend exists)
+
+# =========================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+
+# EF Core
+
+# =========================
+
+Migrations/*Designer.cs
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+
+# Temporary files
+
+# =========================
+
+*.tmp
+*.temp
+*.cache
+*.docx
+appsettings.Development.json

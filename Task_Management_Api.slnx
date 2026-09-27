@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Projektmappenelemente/">
+    <File Path="jsconfig.json" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+  <Project Path="Task_Management_Api/Task_Management_Api.csproj" />
+</Solution>
