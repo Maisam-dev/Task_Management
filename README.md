@@ -46,14 +46,23 @@ environment:
 
 Bash  
 
-docker compose up -d --build
+docker compose up -d --build  
 
-3- Access Swagger UI:  
+3- Apply Database Migrations:  
+
+(Required to create database tables inside the Docker container)  
+
+Bash:  
+
+dotnet ef database update --project Task_Management_Api  
+
+
+4- Access Swagger UI:  
 
 Open your browser at: http://localhost:5000/swagger
+  
 
-## Option 2:
-Running Locally (Without Docker)
+## Option 2: Running Locally (Without Docker)
 Run the application directly on your local machine using .NET 10 SDK and a local SQL Server instance.
 
 Prerequisites
@@ -103,16 +112,24 @@ Open your browser at: https://localhost:7051/swagger (or http://localhost:5000/s
 The API includes programmatic Data Seeding (OnModelCreating) that automatically populates the database with test users,
 companies, and tasks upon running the database update.
 
-User1:admin@mail.com        /password1: admin				/Role1: Admin  
+User1:admin@mail.com             /password1: admin		        		/Role1: Admin  
 
-User2:alex@mail.com			/ password2: alex123			/Role2: User  
+User2:alex@mail.com		    	/ password2: alex123		        	/Role2: User  
 
-User3:ana@mail.com   		/ password3: ana123				/Role3: User  
-
+User3:ana@mail.com   	    	/ password3: ana123			        	/Role3: User  
+    
 
 
  ## Architecture & RoadmapSecurity:
  
- Built with ASP.NET Core Identity & JWT. Designed to scale seamlessly toward
- dedicated Identity Providers (e.g., OpenIddict) if multi-app SSO is required.
- Roadmap: Planned support for Refresh Tokens and Redis-based token revocation (Logout).
+Security:
+Built with ASP.NET Core Identity & JWT. Designed to scale seamlessly toward dedicated Identity  
+Providers (e.g., OpenIddict) if multi-app SSO is required.
+
+Roadmap:
+Planned support for Refresh Tokens and Redis-based token revocation (Logout).
+
+Scalability:
+If the project grows in complexity, adopting CQRS (Command Query Responsibility Segregation) is  
+recommended to separate read and write operations. This can improve maintainability, scalability,  
+and make future development easier.

@@ -1,17 +1,18 @@
 ﻿using AutoMapper;
 using Task_Management_Api.DTOs;
 using Task_Management_Api.Models;
-using Task_Management_Api.Repositories;
+using Task_Management_Api.Repositories.Interfaces;
+using Task_Management_Api.Services.Interfaces;
 
 namespace Task_Management_Api.Services
 {
-    public class TaskService
+    public class TaskService : ITaskService
     {
-        private readonly TaskRepository _taskrepository;
+        private readonly ITaskRepository _taskrepository;
         private readonly IMapper _mapper;
         private readonly ILogger<TaskService> _logger;
 
-        public TaskService(TaskRepository taskRepository, IMapper mapper, ILogger<TaskService> logger)
+        public TaskService(ITaskRepository taskRepository, IMapper mapper, ILogger<TaskService> logger)
         {
             _taskrepository = taskRepository;
             _mapper = mapper;

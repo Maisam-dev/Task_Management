@@ -7,7 +7,10 @@ using Task_Management_Api.Data;
 using Task_Management_Api.Mappings;
 using Task_Management_Api.Middleware;
 using Task_Management_Api.Repositories;
+using Task_Management_Api.Repositories.Interfaces;
 using Task_Management_Api.Services;
+using Task_Management_Api.Services.Interfaces;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var allowedOrigins = builder.Configuration.GetValue<string>("AllwedOrigins");
@@ -41,14 +44,14 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
-builder.Services.AddScoped<CustomerRepository>();
-builder.Services.AddScoped<TaskRepository>();
-builder.Services.AddScoped<UserRepository>();
-builder.Services.AddScoped<CustomerService>();
-builder.Services.AddScoped<TaskService>();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<TokenService>();
-builder.Services.AddScoped<AccountService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<ITaskRepository, TaskRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddDbContext<AppDbContext>(option =>
  option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );

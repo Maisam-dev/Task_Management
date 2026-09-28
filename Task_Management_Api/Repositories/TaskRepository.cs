@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Task_Management_Api.Data;
+using Task_Management_Api.Repositories.Interfaces;
 
 namespace Task_Management_Api.Repositories
 {
-    public class TaskRepository
+    public class TaskRepository : ITaskRepository
     {
         private readonly AppDbContext _dbContext;
 
@@ -41,9 +42,9 @@ namespace Task_Management_Api.Repositories
         public async Task<bool> Update(Models.TaskItem task)
         {
             _dbContext.taskItems.Update(task);
-           var affectedRows =  await _dbContext.SaveChangesAsync();
+            var affectedRows = await _dbContext.SaveChangesAsync();
             return affectedRows > 0;
-            
+
         }
 
         public async Task<bool> DeleteTask(int id)

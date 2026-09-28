@@ -1,18 +1,19 @@
 ﻿using AutoMapper;
 using Task_Management_Api.DTOs;
 using Task_Management_Api.Models;
-using Task_Management_Api.Repositories;
+using Task_Management_Api.Repositories.Interfaces;
+using Task_Management_Api.Services.Interfaces;
 
 namespace Task_Management_Api.Services
 {
-    public class CustomerService
+    public class CustomerService : ICustomerService
     {
-        private readonly CustomerRepository _customerRepository;
+        private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<CustomerService> _logger;
 
         public CustomerService(
-            CustomerRepository customerRepository,
+            ICustomerRepository customerRepository,
             IMapper mapper,
             ILogger<CustomerService> logger
             )

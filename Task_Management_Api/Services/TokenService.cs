@@ -3,10 +3,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Task_Management_Api.Models;
+using Task_Management_Api.Services.Interfaces;
 
 namespace Task_Management_Api.Services
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         private readonly IConfiguration _config;
 

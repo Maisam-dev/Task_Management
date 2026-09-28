@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Task_Management_Api.DTOs;
-using Task_Management_Api.Services;
+using Task_Management_Api.Services.Interfaces;
 using Task_Management_Api.Models;
 
 namespace Task_Management_Api.Controllers
@@ -12,9 +12,9 @@ namespace Task_Management_Api.Controllers
     [Authorize]
     public class TaskController : ControllerBase
     {
-        private readonly TaskService _taskService;
+        private readonly ITaskService _taskService;
 
-        public TaskController(TaskService taskService)
+        public TaskController(ITaskService taskService)
         {
             _taskService = taskService;
         }

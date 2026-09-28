@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Task_Management_Api.Data;
 using Task_Management_Api.Models;
+using Task_Management_Api.Repositories.Interfaces;
 
 namespace Task_Management_Api.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly AppDbContext _context;
 

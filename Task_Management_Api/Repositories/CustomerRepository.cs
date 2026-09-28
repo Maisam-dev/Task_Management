@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Task_Management_Api.Data;
 using Task_Management_Api.Models;
+using Task_Management_Api.Repositories.Interfaces;
 
 namespace Task_Management_Api.Repositories
 {
-    public class CustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         private readonly AppDbContext _dbContext;
 
@@ -26,7 +27,7 @@ namespace Task_Management_Api.Repositories
         public async Task<Customer> PostAsync(Customer customer)
         {
             _dbContext.customers.Add(customer);
-           await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
             return customer;
         }
 
@@ -40,9 +41,9 @@ namespace Task_Management_Api.Repositories
         public async Task<bool> Put(Customer customer)
         {
             _dbContext.customers.Update(customer);
-           var affecteRows = await _dbContext.SaveChangesAsync();
+            var affecteRows = await _dbContext.SaveChangesAsync();
             return affecteRows > 0;
-           
+
         }
     }
 }

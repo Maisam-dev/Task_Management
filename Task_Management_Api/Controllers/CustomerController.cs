@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Task_Management_Api.DTOs;
 using Task_Management_Api.Models;
-using Task_Management_Api.Services;
+using Task_Management_Api.Services.Interfaces;
 
 namespace Task_Management_Api.Controllers
 {
@@ -11,9 +11,9 @@ namespace Task_Management_Api.Controllers
     [Authorize(Roles = "Admin")]
     public class CustomerController : Controller
     {
-        private readonly CustomerService _customerService;
+        private readonly ICustomerService _customerService;
 
-        public CustomerController(CustomerService customerService)
+        public CustomerController(ICustomerService customerService)
         {
             _customerService = customerService;
         }

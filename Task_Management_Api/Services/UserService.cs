@@ -1,13 +1,14 @@
 ﻿using Task_Management_Api.Models;
-using Task_Management_Api.Repositories;
+using Task_Management_Api.Repositories.Interfaces;
+using Task_Management_Api.Services.Interfaces;
 
 namespace Task_Management_Api.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        private readonly UserRepository _repository;
+        private readonly IUserRepository _repository;
 
-        public UserService(UserRepository repository)
+        public UserService(IUserRepository repository)
         {
             _repository = repository;
         }

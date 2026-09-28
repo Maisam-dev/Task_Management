@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Task_Management_Api.DTOs;
-using Task_Management_Api.Services;
+using Task_Management_Api.Services.Interfaces;
 
 namespace Task_Management_Api.Controllers
 {
@@ -8,9 +8,9 @@ namespace Task_Management_Api.Controllers
     [Route("api/[Controller]")]
     public class AccountController : ControllerBase
     {
-        private readonly AccountService _cauntService;
+        private readonly IAccountService _cauntService;
 
-        public AccountController(AccountService acauntService)
+        public AccountController(IAccountService acauntService)
         {
             _cauntService = acauntService;
         }
