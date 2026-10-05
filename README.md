@@ -116,11 +116,11 @@ Open your browser at: https://localhost:7051/swagger (or http://localhost:5000/s
 
 The API includes programmatic Data Seeding (OnModelCreating) that automatically populates the database with test users, companies, and tasks upon running the database update.
 
-**User1:** `admin@mail.com` / `password1` — **Role1:** Admin
+**User1:** `admin@mail.com` / **pssword1** `admin` — **Role1:** Admin
 
-**User2:** `alex@mail.com` / `alex123` — **Role2:** User
+**User2:** `alex@mail.com` /  **pssword2** `alex123` — **Role2:** User
 
-**User3:** `ana@mail.com` / `ana123` — **Role3:** User
+**User3:** `ana@mail.com` /  **pssword3** `ana123` — **Role3:** User
 
 ---
 
