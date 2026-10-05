@@ -49,10 +49,12 @@ namespace Task_Management_Api.Repositories
 
         public async Task<bool> DeleteTask(int id)
         {
-            var affectedRows = await _dbContext.taskItems
-                .Where(t => t.Id == id).
-                ExecuteDeleteAsync();
+            var task = await _dbContext.taskItems.FindAsync(id);
+            if (task == null)
+                return false;
 
+            _dbContext.taskItems.Remove(task);
+            var affectedRows = await _dbContext.SaveChangesAsync();
             return affectedRows > 0;
         }
     }

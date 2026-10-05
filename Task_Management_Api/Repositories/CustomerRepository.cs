@@ -33,9 +33,12 @@ namespace Task_Management_Api.Repositories
 
         public async Task<int> Delete(int id)
         {
-            return await _dbContext.customers.
-                  Where(c => c.Id == id).
-                  ExecuteDeleteAsync();
+            var customer = await _dbContext.customers.FindAsync(id);
+            if (customer == null)
+                return 0;
+
+            _dbContext.customers.Remove(customer);
+            return await _dbContext.SaveChangesAsync();
         }
 
         public async Task<bool> Put(Customer customer)

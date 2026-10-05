@@ -6,130 +6,134 @@ A lightweight RESTful API built with **.NET 10** for customer management and tas
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 * **Framework**: .NET 10 (C# 12)
 * **Database**: SQL Server
 * **ORM**: Entity Framework Core 10 (`Microsoft.EntityFrameworkCore.SqlServer` v10.x)
 * **Auth**: ASP.NET Core Identity & JWT Bearer (`Microsoft.AspNetCore.Authentication.JwtBearer` v10.x)
 * **Utilities**: AutoMapper v16.x, Swashbuckle / OpenAPI v10.x
+* **Containerization**: Docker & Docker Compose
+* **Testing**: xUnit v2.x, Moq v4.x, FluentAssertions v6.x
 
 ## 🚀 Quick Start
 
 First, clone the repository and navigate to the project directory:
 
-bash  
-
-git clone [https://github.com/Maisam-dev/Task_Management.git](https://github.com/Maisam-dev/Task_Management.git)  
-
-cd Task_Management  
-
+```bash
+git clone https://github.com/Maisam-dev/Task_Management.git
+cd Task_Management
+```
 
 Choose one of the following methods to run the application:
 
 ## Option 1: Running with Docker (Recommended)
+
 Run the entire application (API & SQL Server) instantly using Docker, with no need to install .NET 10 SDK or SQL Server locally.
 
-Prerequisites
+### Prerequisites
+
 Docker Desktop installed and running.
 
-Steps:  
+### Steps:
 
-1- Configure Environment Variables (Optional):
-Open docker-compose.override.yml and update the JWT key or database password if needed:
+**1- Configure Environment Variables (Optional):**
 
+Open `docker-compose.override.yml` and update the JWT key or database password if needed:
+
+```yaml
 environment:
   - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=Task_ManagementDb;User Id=sa;Password=YOUR_SECURE_PASSWORD!;TrustServerCertificate=True;
   - JWT__Key=YOUR_SUPER_SECRET_KEY_HERE_AT_LEAST_32_CHARS
+```
 
-2- Start the Containers:
+**2- Start the Containers:**
 
-Bash  
+```bash
+docker compose up -d --build
+```
 
-docker compose up -d --build  
+**3- Apply Database Migrations:**
 
-3- Apply Database Migrations:  
+*(Required to create database tables inside the Docker container)*
 
-(Required to create database tables inside the Docker container)  
+```bash
+dotnet ef database update --project Task_Management_Api
+```
 
-Bash:  
-
-dotnet ef database update --project Task_Management_Api  
-
-
-4- Access Swagger UI:  
+**4- Access Swagger UI:**
 
 Open your browser at: http://localhost:5000/swagger
-  
+
+---
 
 ## Option 2: Running Locally (Without Docker)
+
 Run the application directly on your local machine using .NET 10 SDK and a local SQL Server instance.
 
-Prerequisites
--.NET 10 SDK installed.
-- Local SQL Server instance running.
+### Prerequisites
 
-Steps:  
+* .NET 10 SDK installed.
+* Local SQL Server instance running.
 
-Configure Database & JWT:  
+### Steps:
 
-1- Open Task_Management_Api/appsettings.json and set your connection string and JWT secret key:  
+**Configure Database & JWT:**
 
+**1- Open `Task_Management_Api/appsettings.json` and set your connection string and JWT secret key:**
 
-JSON  
-
+```json
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=YOUR_SERVER;Database=Task_ManagementDb;Trusted_Connection=True;TrustServerCertificate=True;"
-  },  
+  },
 
   "JWT": {
     "Key": "YOUR_SUPER_SECRET_KEY_HERE_AT_LEAST_32_CHARS"
   }
 }
+```
 
-Apply Database Migrations:
+**Apply Database Migrations:**
 
-Bash  
+```bash
+dotnet ef database update --project Task_Management_Api
+```
 
-dotnet ef database update --project Task_Management_Api  
+**Run the Application:**
 
-Run the Application:  
+```bash
+dotnet run --project Task_Management_Api
+```
 
+**Access Swagger UI:**
 
-Bash  
+Open your browser at: https://localhost:7051/swagger (or http://localhost:5000/swagger)
 
-dotnet run --project Task_Management_Api  
+---
 
-Access Swagger UI:  
+## Demo Credentials (Auto-Seeded Data)
 
-Open your browser at: https://localhost:7051/swagger (or http://localhost:5000/swagger)  
+The API includes programmatic Data Seeding (OnModelCreating) that automatically populates the database with test users, companies, and tasks upon running the database update.
 
+**User1:** `admin@mail.com` / `password1` — **Role1:** Admin
 
+**User2:** `alex@mail.com` / `alex123` — **Role2:** User
 
-## Demo Credentials (Auto-Seeded Data)  
+**User3:** `ana@mail.com` / `ana123` — **Role3:** User
 
-The API includes programmatic Data Seeding (OnModelCreating) that automatically populates the database with test users,
-companies, and tasks upon running the database update.
+---
 
-User1:admin@mail.com             /password1: admin		        		/Role1: Admin  
+## Architecture & Roadmap
 
-User2:alex@mail.com		    	/ password2: alex123		        	/Role2: User  
+### Security:
 
-User3:ana@mail.com   	    	/ password3: ana123			        	/Role3: User  
-    
+Built with ASP.NET Core Identity & JWT. Designed to scale seamlessly toward dedicated Identity Providers (e.g., OpenIddict) if multi-app SSO is required.
 
+### Roadmap:
 
- ## Architecture & RoadmapSecurity:
- 
-Security:
-Built with ASP.NET Core Identity & JWT. Designed to scale seamlessly toward dedicated Identity  
-Providers (e.g., OpenIddict) if multi-app SSO is required.
-
-Roadmap:
 Planned support for Refresh Tokens and Redis-based token revocation (Logout).
 
-Scalability:
-If the project grows in complexity, adopting CQRS (Command Query Responsibility Segregation) is  
-recommended to separate read and write operations. This can improve maintainability, scalability,  
-and make future development easier.
+### Scalability:
+
+If the project grows in complexity, adopting CQRS (Command Query Responsibility Segregation) is recommended to separate read and write operations. This can improve maintainability, scalability, and make future development easier.

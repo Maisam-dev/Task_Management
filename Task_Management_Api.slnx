@@ -2,9 +2,10 @@
   <Folder Name="/Projektmappenelemente/">
     <File Path="jsconfig.json" />
     <File Path="README.md" />
+    <Project Path="docker-compose.dcproj">
+      <Build />
+    </Project>
   </Folder>
-  <Project Path="docker-compose.dcproj">
-    <Build />
-  </Project>
+  <Project Path="Task_Management.Test/Task_Management.Test.csproj" Id="1b6b4a86-4790-4887-92b9-577e5b2ab308" />
   <Project Path="Task_Management_Api/Task_Management_Api.csproj" />
 </Solution>
